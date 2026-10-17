@@ -8,6 +8,25 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        database: [sqlite, postgres]
+
+    # A real Postgres server for the postgres run, like the one in production
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: glossary_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
     steps:
       - uses: actions/checkout@v4
 
@@ -19,5 +38,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements-dev.txt
 
-      - name: Run tests
+      - name: Run tests (SQLite)
+        if: matrix.database == 'sqlite'
+        run: pytest -v
+
+      - name: Run tests (Postgres)
+        if: matrix.database == 'postgres'
+        env:
+          TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/glossary_test
         run: pytest -v

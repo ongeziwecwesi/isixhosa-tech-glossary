@@ -5,9 +5,10 @@ from pathlib import Path
 
 import pytest
 
-# Point the app at a throwaway database BEFORE it is imported
+# Point the app at a throwaway database BEFORE it is imported.
+# SQLite by default; set TEST_DATABASE_URL to run the tests against Postgres.
 TEST_DB = Path(tempfile.mkdtemp()) / "test.db"
-os.environ["DATABASE_URL"] = f"sqlite:///{TEST_DB}"
+os.environ["DATABASE_URL"] = os.getenv("TEST_DATABASE_URL", f"sqlite:///{TEST_DB}")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from fastapi.testclient import TestClient  # noqa: E402
