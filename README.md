@@ -4,6 +4,9 @@
 
 A REST API and small website for computing and technology terms in English and isiXhosa. You can search in either language, browse by category, and suggest new terms. Suggestions are reviewed before they become part of the glossary.
 
+   **Live:** https://isixhosa-tech-glossary.onrender.com · API docs at `/docs`
+   (Free hosting, so the first visit after a quiet spell can take about a minute.)
+
 ## Why
 
 isiXhosa is my home language. When I teach programming or explain technology at home, the isiXhosa words for things like *network*, *variable* or *backup* are often hard to find, or people simply switch to English. I wanted one place where these terms live, that anyone can search, and that other developers can build on through an API.
