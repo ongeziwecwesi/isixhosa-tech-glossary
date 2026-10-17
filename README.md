@@ -70,7 +70,7 @@ curl "http://localhost:8000/api/terms?q=network"
 
 ## Tech stack
 
-Python, FastAPI, SQLAlchemy 2, Pydantic, SQLite, pytest, GitHub Actions, Docker, HTML/CSS/JavaScript
+Python, FastAPI, SQLAlchemy 2, Pydantic, SQLite, pytest, GitHub Actions, Docker, HTML/CSS/JavaScript, PostgreSQL (Neon), Render
 
 ## Running it locally
 
@@ -108,7 +108,7 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-The 31 tests cover search ranking, filtering, pagination, input validation, duplicate handling, the full suggest → review → approve flow, the admin key check and the CSV loader. They run on every push through GitHub Actions.
+The 36 tests cover search ranking, filtering, pagination, input validation, duplicate handling, the full suggest → review → approve flow, the admin key check and the CSV loader. They run on every push through GitHub Actions. They run against both SQLite and PostgreSQL.
 
 ## Adding terms
 
@@ -134,7 +134,6 @@ Terms live in `data/terms.csv`. Rows without an isiXhosa term are skipped when l
 
 - Rate limiting on suggestions, to stop spam
 - Database migrations with Alembic, instead of creating tables on startup
-- Deployment to Azure App Service with PostgreSQL
 - More terms, and a way to show more than one accepted isiXhosa term side by side
 
 ## Author
