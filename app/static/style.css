@@ -1,0 +1,121 @@
+:root {
+  --bg: #faf8f4;
+  --surface: #ffffff;
+  --text: #1f2421;
+  --muted: #5f6661;
+  --line: #e4e0d8;
+  --accent: #1d5c4a;
+  --accent-soft: #e3efe9;
+  --error: #a33a2b;
+  --radius: 10px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151816;
+    --surface: #1e2220;
+    --text: #e8ebe9;
+    --muted: #a0a8a3;
+    --line: #2f3532;
+    --accent: #7cc4ad;
+    --accent-soft: #23332d;
+    --error: #f0907f;
+  }
+}
+
+* { box-sizing: border-box; }
+
+/* Without this, a rule like ".more { display: block }" would override the
+   hidden attribute and the element would still show. */
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+a { color: var(--accent); }
+
+.site-header { border-bottom: 1px solid var(--line); padding: 28px 0 20px; }
+.header-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+h1 { margin: 0; font-size: 1.6rem; letter-spacing: -0.01em; }
+.tagline { margin: 4px 0 0; color: var(--muted); }
+.header-links { display: flex; gap: 14px; align-items: center; font-size: 0.95rem; }
+.lang-toggle {
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  border-radius: 999px; padding: 4px 12px; cursor: pointer; font: inherit;
+}
+
+.search { padding: 24px 0 8px; }
+#q {
+  width: 100%; font-size: 1.15rem; padding: 14px 16px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); color: var(--text);
+}
+#q:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.categories { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip {
+  border: 1px solid var(--line); background: var(--surface); color: var(--text);
+  border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 0.9rem; cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.chip .count { opacity: 0.7; margin-left: 4px; }
+
+.summary { color: var(--muted); font-size: 0.95rem; min-height: 1.5em; }
+
+.results { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.term {
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px 18px;
+}
+.term-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.term-xh { font-size: 1.3rem; font-weight: 650; }
+.term-en { color: var(--muted); }
+.term-cat {
+  margin-left: auto; font-size: 0.8rem; color: var(--accent);
+  background: var(--accent-soft); padding: 2px 8px; border-radius: 999px;
+}
+.term p { margin: 8px 0 0; }
+.term .example { font-style: italic; color: var(--muted); }
+
+.more {
+  display: block; margin: 16px auto 0; font: inherit; cursor: pointer;
+  background: none; border: 1px solid var(--line); color: var(--text);
+  border-radius: var(--radius); padding: 8px 18px;
+}
+
+.suggest { margin: 40px 0 24px; border-top: 1px solid var(--line); padding-top: 24px; }
+.suggest summary { cursor: pointer; font-weight: 600; font-size: 1.05rem; }
+.hint { color: var(--muted); }
+form { display: grid; gap: 12px; }
+form label { display: grid; gap: 4px; font-size: 0.92rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+form input, form select, form textarea {
+  font: inherit; padding: 9px 11px; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--surface); color: var(--text);
+}
+form button {
+  justify-self: start; font: inherit; cursor: pointer; border: 0;
+  background: var(--accent); color: var(--surface);
+  padding: 10px 18px; border-radius: 8px;
+}
+.form-status { margin: 0; min-height: 1.5em; }
+.form-status.error { color: var(--error); }
+
+.footer { color: var(--muted); font-size: 0.9rem; padding-bottom: 32px; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .field-row { grid-template-columns: 1fr; }
+  .term-cat { margin-left: 0; }
+}

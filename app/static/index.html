@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>isiXhosa Tech Glossary</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <div>
+        <h1 data-label="title">isiXhosa Tech Glossary</h1>
+        <p class="tagline" data-label="tagline">Computing and technology terms in English and isiXhosa</p>
+      </div>
+      <div class="header-links">
+        <button id="lang-toggle" class="lang-toggle" hidden>isiXhosa</button>
+        <a href="/docs" data-label="apiDocs">API docs</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="search">
+      <label for="q" class="visually-hidden" data-label="searchLabel">Search for a term</label>
+      <input id="q" type="search" autocomplete="off" autofocus
+             data-label-placeholder="searchPlaceholder"
+             placeholder="Search in English or isiXhosa, e.g. network">
+      <div id="categories" class="categories" role="group" aria-label="Filter by category"></div>
+    </section>
+
+    <p id="summary" class="summary" aria-live="polite"></p>
+    <ul id="results" class="results"></ul>
+    <button id="more" class="more" hidden data-label="showMore">Show more</button>
+
+    <section class="suggest">
+      <details>
+        <summary data-label="suggestTitle">Suggest a term</summary>
+        <p class="hint" data-label="suggestHint">
+          Know a good isiXhosa term that's missing? Suggestions are reviewed before they appear.
+        </p>
+        <form id="suggest-form">
+          <div class="field-row">
+            <label><span data-label="fieldEnglish">English term</span>
+              <input name="english" required maxlength="120"></label>
+            <label><span data-label="fieldXhosa">isiXhosa term</span>
+              <input name="xhosa" required maxlength="160"></label>
+          </div>
+          <label><span data-label="fieldCategory">Category</span>
+            <select name="category" id="suggest-category" required></select></label>
+          <label><span data-label="fieldDefinition">What does it mean? (in English)</span>
+            <textarea name="definition" required minlength="10" maxlength="1000" rows="2"></textarea></label>
+          <label><span data-label="fieldExample">Example sentence in isiXhosa (optional)</span>
+            <textarea name="example_xh" maxlength="500" rows="2"></textarea></label>
+          <label><span data-label="fieldName">Your name (optional)</span>
+            <input name="submitted_by" maxlength="80"></label>
+          <button type="submit" data-label="send">Send suggestion</button>
+          <p id="suggest-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </details>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    Built by <a href="https://github.com/ongeziwecwesi">Ongeziwe Cwesi</a>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
